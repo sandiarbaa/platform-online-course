@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('teachers', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // otomatis membaca tabel users // ketika mendelete teacher maka akan menghapus juga seluruh data dari 1 instance si user_id itu
+            $table->boolean('is_active')->default(1);
+            $table->softDeletes();
             $table->timestamps();
         });
     }
